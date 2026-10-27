@@ -8,8 +8,13 @@
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://razeltech.github.io/divya-drusti/assets/og-preview.jpg</image:loc>
-      <image:title>Divya Drusti — Spatial Vision Studio</image:title>
-      <image:caption>Real-time on-device AR spatial vision studio by Razel Tech</image:caption>
+      <image:title>Divya Drusti — Spatial Vision Studio | Razel Tech</image:title>
+      <image:caption>Real-time on-device AR spatial vision studio powered by WebGL2 shaders and MediaPipe AI by Razel Tech</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://razeltech.github.io/divya-drusti/assets/divyadrusti-linkedin.jpg</image:loc>
+      <image:title>Divya Drusti Spatial Computing Showcase Visual</image:title>
+      <image:caption>On-device augmented reality computer vision and kinetic gesture tracking</image:caption>
     </image:image>
   </url>
 </urlset>
