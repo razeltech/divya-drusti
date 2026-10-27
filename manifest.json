@@ -1,16 +1,42 @@
 {
-  "name": "DIVYA — Spatial Vision Studio",
-  "short_name": "DIVYA",
-  "description": "AR camera effects, hair & makeup try-on and gesture spells. Powered by Razel Tech.",
+  "name": "Divya Drusti — Spatial Vision Studio",
+  "short_name": "DivyaDrusti",
+  "description": "On-device augmented reality, 468-point facial mesh tracking, and real-time computer vision lab. Powered by Razel Tech.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#06070a",
   "theme_color": "#06070a",
+  "categories": [
+    "photo",
+    "multimedia",
+    "productivity",
+    "utilities"
+  ],
   "icons": [
-    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
   ]
 }

@@ -3941,6 +3941,11 @@
     const pwaBanner = document.getElementById("pwa-install-banner");
     const bannerInstallBtn = document.getElementById("btn-banner-install");
     const bannerDismissBtn = document.getElementById("btn-banner-dismiss");
+    const rowInstall = document.getElementById("row-install");
+    const iosModal = document.getElementById("ios-pwa-modal");
+    const closeIosModalBtn = document.getElementById("btn-close-ios-modal");
+
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
     // Detect standalone / installed PWA or APK wrapper mode
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
@@ -3950,32 +3955,49 @@
     // Suppress PWA install banner and row if running inside installed APK / PWA
     if (isStandalone) {
       if (pwaBanner) pwaBanner.style.display = "none";
-      const rowInstall = document.getElementById("row-install");
       if (rowInstall) rowInstall.style.display = "none";
+    } else {
+      // If iOS, show install controls
+      if (isIOS) {
+        if (rowInstall) rowInstall.style.display = "flex";
+        if (!localStorage.getItem("divya_pwa_dismissed") && pwaBanner) {
+          pwaBanner.style.display = "flex";
+        }
+      }
     }
 
     window.addEventListener("beforeinstallprompt", e => {
       if (isStandalone) return;
       e.preventDefault();
       deferredInstall = e;
-      document.getElementById("row-install").style.display = "flex";
+      if (rowInstall) rowInstall.style.display = "flex";
       if (!localStorage.getItem("divya_pwa_dismissed") && pwaBanner) {
         pwaBanner.style.display = "flex";
       }
     });
 
-    if (bannerInstallBtn) {
-      bannerInstallBtn.addEventListener("click", async () => {
-        if (!deferredInstall) return;
+    const triggerInstallFlow = async () => {
+      if (deferredInstall) {
         deferredInstall.prompt();
         const { outcome } = await deferredInstall.userChoice;
         deferredInstall = null;
         if (pwaBanner) pwaBanner.style.display = "none";
-        document.getElementById("row-install").style.display = "none";
+        if (rowInstall) rowInstall.style.display = "none";
         if (outcome === "accepted") {
           localStorage.setItem("divya_pwa_dismissed", "installed");
         }
-      });
+      } else if (isIOS) {
+        if (iosModal) iosModal.style.display = "flex";
+      }
+    };
+
+    if (bannerInstallBtn) {
+      bannerInstallBtn.addEventListener("click", triggerInstallFlow);
+    }
+
+    const btnInstall = document.getElementById("btn-install");
+    if (btnInstall) {
+      btnInstall.addEventListener("click", triggerInstallFlow);
     }
 
     if (bannerDismissBtn) {
@@ -3985,22 +4007,16 @@
       });
     }
 
-    document.getElementById("btn-install").addEventListener("click", async () => {
-      if (!deferredInstall) return;
-      deferredInstall.prompt();
-      const { outcome } = await deferredInstall.userChoice;
-      deferredInstall = null;
-      if (pwaBanner) pwaBanner.style.display = "none";
-      document.getElementById("row-install").style.display = "none";
-      if (outcome === "accepted") {
-        localStorage.setItem("divya_pwa_dismissed", "installed");
-      }
-    });
+    if (closeIosModalBtn) {
+      closeIosModalBtn.addEventListener("click", () => {
+        if (iosModal) iosModal.style.display = "none";
+      });
+    }
 
     window.addEventListener("appinstalled", () => {
       deferredInstall = null;
       if (pwaBanner) pwaBanner.style.display = "none";
-      document.getElementById("row-install").style.display = "none";
+      if (rowInstall) rowInstall.style.display = "none";
       localStorage.setItem("divya_pwa_dismissed", "installed");
     });
     
