@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 <img src="assets/og-preview.jpg" alt="Divya Drusti — Spatial Vision Studio by Razel Tech" width="50%">
 
@@ -202,3 +202,4 @@ Supported across Chrome, Edge, Safari 16+, and Firefox with WebGL2 and camera pe
 
 Developed by **[Razel Tech](https://razeltech.github.io)**.  
 Google MediaPipe (c) Google, Apache-2.0.
+

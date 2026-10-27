@@ -1,0 +1,4 @@
+﻿User-agent: *
+Allow: /
+
+Sitemap: https://razeltech.github.io/divya-drusti/sitemap.xml
